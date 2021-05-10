@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> contact form with javascript </title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="form-content">
+
+        <div class="form-item">
+
+            <h1 class="form-item-title"> Contact Us </h1>
+
+            <form action="javascript:sendmail()" method="POST">
+
+                <input type="text" name="Name" id="Name" placeholder="Name" required>
+
+                <input type="Email" name="Sender" id="Sender" placeholder="Email" required>
+
+                <input type="text" name="Subject" id="Subject" placeholder="Subject" required>
+
+                <textarea type="text" id="Massege" placeholder="Message" required></textarea>
+
+                <button type="submit" class="form-btn"> send massege </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
+    <script>  
+
+        function sendmail(){
+       
+               var name = $('#Name').val();
+               var email = $('#Sender').val();
+               var subject = $('#Subject').val();
+         var message = $('#Message').val();
+     
+               // var body = $('#body').val();
+     
+               var Body='Name: '+name+'<br>Email: '+email+'<br>Subject: '+subject+'<br>Message: '+message;
+               //console.log(name, phone, email, message);
+     
+               Email.send({
+           SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
+                   To: 'OmarSk112233@gmail.com',
+                   From: "pageMessage@gmail.com",
+                   Subject: "New message on contact from "+name,
+                   Body: Body
+               }).then(
+                   message =>{
+                       //console.log (message);
+                       if(message=='OK'){
+                       alert ("Yor Massege Send Successfully");
+                       }
+                       else{
+                           console.error (message);
+                           alert('There is error at sending message. ')
+                           
+                       }
+     
+                   }
+               );
+     
+     
+     
+           }
+     
+     
+         </script>
+   
+</body>
+</html>
